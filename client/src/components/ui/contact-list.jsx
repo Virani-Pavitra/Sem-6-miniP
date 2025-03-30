@@ -45,9 +45,9 @@ const ContactList = ({ contacts, isChannel = false }) => {
                                     </div>
                                 )}
                             </Avatar>
-                        )}{isChannel && <div className="bg-[#ffffff22] h-10 w-10 flex item-center justify-center rounded-full"></div>}
+                        )}{isChannel && <div className="bg-[#ffffff22] h-10 w-10 flex item-center justify-center rounded-full">#</div>}
                         {
-                            isChannel? <span>{contact.name}</span> : <span>{`${contact.firstName} ${contact.lastName}`}</span>
+                            isChannel? <span>{contact.name}</span> : <span>{contact.firstName ? `${contact.firstName} ${contact.lastName}` : contact.email}</span>
                         }
                     </div>
                 </div>

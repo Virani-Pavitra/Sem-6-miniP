@@ -25,16 +25,26 @@ export const SocketProvider = ({ children }) => {
                 console.log("Connected to socket server");
             });
 
-            const handleRecieveMessage = (message) => {
-                const {selectedChatData, selectedChatType, addMessage} = useAppStore.getState();
+            const handleReceiveMessage = (message) => {
+                const {selectedChatData, selectedChatType, addMessage, addContactInDMContacts} = useAppStore.getState();
 
                 if(selectedChatType!==undefined && (selectedChatData._id===message.sender._id || selectedChatData._id === message.recipient._id)){
-                    console.log(message);
+                    console.log("message rcv:",message);
                     addMessage(message);
                 }
+                addContactInDMContacts(message);
             };
 
-            socket.current.on("recieveMessage", handleRecieveMessage)
+            const handleReceiveChannelMessage = (message) => {
+                const { selectedChatData, selectedChatType, addMessage, addChannelInChannelList} = useAppStore.getState();
+                if(selectedChatType!== undefined && selectedChatData._id === message.channelId){
+                    addMessage(message);
+                }
+                addChannelInChannelList(message);
+            };
+
+            socket.current.on("receiveMessage", handleReceiveMessage);
+            socket.current.on("receive-channel-message", handleReceiveChannelMessage);
             return () => {
                 socket.current.disconnect();
             };
