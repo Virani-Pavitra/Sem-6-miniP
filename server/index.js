@@ -17,29 +17,29 @@ const port = process.env.PORT || 3001;
 const databaseURL = process.env.DATABASE_URL;
 const ip = getLocalIP();
 
-// app.use(
-//     cors({
-//            origin:[process.env.ORIGIN],
-//            methods:["GET","POST","PUT","PATCH","DELETE"],
-//            credentials: true, 
-//         })
-// );
-
-const allowedOrigins = process.env.ORIGIN.split(",");
-
 app.use(
     cors({
-        origin: function (origin, callback) {
-            if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error("Not allowed by CORS"));
-            }
-        },
-        credentials: true,
-        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    })
+           origin:[process.env.ORIGIN],
+           methods:["GET","POST","PUT","PATCH","DELETE"],
+           credentials: true, 
+        })
 );
+
+// const allowedOrigins = process.env.ORIGIN.split(",");
+
+// app.use(
+//     cors({
+//         origin: function (origin, callback) {
+//             if (!origin || allowedOrigins.includes(origin)) {
+//                 callback(null, true);
+//             } else {
+//                 callback(new Error("Not allowed by CORS"));
+//             }
+//         },
+//         credentials: true,
+//         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+//     })
+// );
 
 app.use("/uploads/profiles", express.static("uploads/profiles"));
 app.use("/uploads/files", express.static("uploads/files"));
