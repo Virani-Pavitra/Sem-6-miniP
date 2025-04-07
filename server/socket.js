@@ -5,7 +5,7 @@ import Channel from "./models/ChannelModel.js";
 const setupSocket = (server)  => {
     const io = new SocketIOServer(server, {
         cors: {
-            origin: process.env.ORIGIN,
+            origin: "https://sem-6-mini-p-x5dp.vercel.app/",
             methods: ["GET", "POST"],
             credentials: true,
         },
