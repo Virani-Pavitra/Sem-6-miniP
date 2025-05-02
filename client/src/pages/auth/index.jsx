@@ -52,6 +52,7 @@ const Auth = () => {
 
     const handleLogin = async () => {
         if(validateLogin()) {
+            try{
             const response = await apiClient.post(LOGIN_ROUTE,
                 {email,password},
                 {withCredentials: true}
@@ -61,7 +62,14 @@ const Auth = () => {
                 if(response.data.user.profileSetup) {navigate("/chat");}
                 else {navigate("/profile");}
             }
-            console.log({response}); 
+            else{
+                alert("Internal server error");
+            }
+        }
+            catch(error){
+                console.error("Login error:", error);
+                alert("Invalid email or password");
+            } 
         }
     };
     
