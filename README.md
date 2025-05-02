@@ -143,4 +143,4 @@ This project is licensed under the MIT License.
 
 ## ✨ Author
 
-- [Your Name](https://github.com/your-username)
+- Pavitra Virani - Krish Dobariya(https://github.com/virani-pavitra  ||  github.com/krishpatel07)
